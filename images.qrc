@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>imagenes/tapiz.png</file>
+        <file>imagenes/platform.png</file>
+    </qresource>
+</RCC>
