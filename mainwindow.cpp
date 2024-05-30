@@ -1,13 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
-#include <QMainWindow>
-#include<QGraphicsScene>
-#include <QKeyEvent>
-#include <QDebug>
-#include <QTimer>
-#include <QVector>
 #include "player.h"
+#include "ball.h"
 
 
 
@@ -18,23 +12,28 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     scene = new QGraphicsScene(this);
     player = new Player(10, 10);
+    timer = new QTimer;
+    bola = new Ball(475, 580);
+    flag = false;
 
-    scene->setSceneRect(0, 0, 810, 856);
+    scene->setSceneRect(0, 0, 1200, 800);
     ui->graphicsView->setScene(scene);
-    ui->graphicsView->resize(scene->width()+2, scene->height()+2);
-    this->resize(ui->graphicsView->width()+100, ui->graphicsView->height()+100);
+    ui->graphicsView->resize(scene->width(), scene->height());
+    this->resize(ui->graphicsView->width(), ui->graphicsView->height());
 
     //Agrego tapiz
     auto background = QImage(":/imagenes/tapiz.png");
-    ui->graphicsView->setBackgroundBrush(background);
+    auto scaledBack = background.scaled(1200, 800);
+    ui->graphicsView->setBackgroundBrush(scaledBack);
 
     scene->addItem(player);
-    player->setInitialPosition(550, 575); 
+    player->setInitialPosition(430, 575);
 
-    timer = new QTimer;
+    scene->addItem(bola);
+
     timer->start(20);
 
-    connect(timer, &QTimer::timeout, this, &MainWindow::actualizar);
+    connect(timer, &QTimer::timeout, this, &MainWindow::actualizarEscena);
 
 }
 
@@ -45,20 +44,52 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::actualizar(){
+void MainWindow::actualizarEscena(){
     scene->advance();
+
+    if (flag == true){
+        bola->move();
+        bola->checkColisionBounds();
+    }
+
+    float velBallY = bola->getVelY();
+
+    if (flag == true){
+        if (bola->collidesWithItem(player)){
+            bola->setVelocity(bola->getVelX(), -1*velBallY);
+        }
+    }
+
 }
 
 void MainWindow::keyPressEvent(QKeyEvent* event){
 
     if(player != nullptr){
-        
-        if(event->key() == Qt::Key_A){
+
+
+        if((event->key() == Qt::Key_A) && (player->getPosX() > 169)){
             player->setPosX(player->getPosX()-20);
+
+            if (flag == false){
+                bola->setPosX(player->getPosX()+45);
+            }
         }
 
-        else if(event->key() == Qt::Key_D){
+        else if((event->key() == Qt::Key_D) && (player->getPosX() < 705)){
             player->setPosX(player->getPosX()+20);
+
+            if (flag == false){
+                bola->setPosX(player->getPosX()+45);
+            }
+        }
+        
+    }
+
+    if(bola != nullptr){
+
+        if(event->key() == Qt::Key_Space){
+            bola->move();
+            flag = true;
         }
     }
 }

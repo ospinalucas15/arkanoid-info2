@@ -9,7 +9,7 @@
 #include <QTimer>
 #include <QVector>
 #include "player.h"
-
+#include "ball.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -26,14 +26,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void keyPressEvent(QKeyEvent* );
+    bool flag;
 
 public slots:
-    void actualizar();
+    void actualizarEscena();
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene* scene = nullptr;
     Player* player = nullptr;
     QTimer* timer = nullptr;
+    Ball* bola = nullptr;
+
 };
 #endif // MAINWINDOW_H
