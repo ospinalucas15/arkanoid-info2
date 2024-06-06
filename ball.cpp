@@ -42,9 +42,11 @@ void Ball::setVelocity(float a, float b){
 
 void Ball::move(){
     posX += getVelX() * dt;
-    posY += getVelY() * dt;
+    posY -= getVelY() * dt;
 
+    qDebug()<<"Antes PosX: "<<getPosX()<<"Antes Pos Y: "<<getPosY();
     setPos(getPosX(), getPosY());
+    qDebug()<<"Despues PosX: "<<getPosX()<<"Despues Pos Y: "<<getPosY();
 }
 
 void Ball::checkColisionBounds(){

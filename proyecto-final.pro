@@ -10,14 +10,20 @@ CONFIG += c++17
 
 SOURCES += \
     ball.cpp \
+    brick.cpp \
+    lives.cpp \
     main.cpp \
     mainwindow.cpp \
-    player.cpp
+    player.cpp \
+    score.cpp
 
 HEADERS += \
     ball.h \
+    brick.h \
+    lives.h \
     mainwindow.h \
-    player.h
+    player.h \
+    score.h
 
 FORMS += \
     mainwindow.ui
