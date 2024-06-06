@@ -17,3 +17,4 @@ void Brick::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWi
     Q_UNUSED(widget);
 }
 
+

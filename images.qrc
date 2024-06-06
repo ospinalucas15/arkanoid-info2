@@ -3,5 +3,7 @@
         <file>imagenes/platform.png</file>
         <file>imagenes/tapiz.png</file>
         <file>imagenes/ball.png</file>
+        <file>imagenes/background.png</file>
+        <file>imagenes/start.png</file>
     </qresource>
 </RCC>

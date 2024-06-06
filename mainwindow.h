@@ -48,4 +48,4 @@ private:
     int yOffset = 710; // Offset en Y del papel tapiz
 
 };
-#endif // MAINWINDOW_H
+#endif // MAINWINDOW_Hd

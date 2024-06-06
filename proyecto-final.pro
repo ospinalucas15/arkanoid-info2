@@ -15,7 +15,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     player.cpp \
-    score.cpp
+    score.cpp \
+    startmenu.cpp
 
 HEADERS += \
     ball.h \
@@ -23,7 +24,8 @@ HEADERS += \
     lives.h \
     mainwindow.h \
     player.h \
-    score.h
+    score.h \
+    startmenu.h
 
 FORMS += \
     mainwindow.ui

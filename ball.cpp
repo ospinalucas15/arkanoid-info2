@@ -73,3 +73,4 @@ void Ball::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
     Q_UNUSED(widget);
 
 }
+
